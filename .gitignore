@@ -2,5 +2,5 @@
 .gradle/
 **/*.iml
 local.properties
-website/vrview/node_modules/
+VR_VIEW/website/vrview/node_modules/
 node_modules/
