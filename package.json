@@ -1,0 +1,23 @@
+{
+  "name": "vshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepasaj/vshop.git"
+  },
+  "dependencies": {
+    "ejs": "2.5.6",
+    "express": "4.15.2"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deepasaj/vshop/issues"
+  },
+  "homepage": "https://github.com/deepasaj/vshop#readme"
+}

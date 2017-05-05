@@ -1,0 +1,7 @@
+{
+  "name": "VShop",
+  "description": "A VR enabled shop",
+  "repository": "https://github.com/deepasaj/vshop.git",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
