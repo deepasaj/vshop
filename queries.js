@@ -49,7 +49,7 @@ function getSingleProduct(req,res,next) {
 }
 
 function createCartitem(req, res, next) {
-    db.none('insert into cartitems(user_id,product_id) values(\'U101\', $1)', 'U101', req.body.productId)
+    db.none('insert into cartitems(user_id,product_id) values(\'U101\', $1)', req.body.productId)
         .then(function () {
             res.status(200).json({});
 
