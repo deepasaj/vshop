@@ -72,6 +72,13 @@ var scenes = {
                 radius: 0.05,
                 distance: 1
             },
+            openCart: {
+                pitch: 35,
+                yaw: -74,
+                radius: 0.18,
+                distance: 1,
+                hidden: true
+            },
             room5: {
                 pitch: 0,
                 yaw: -90,
@@ -206,6 +213,24 @@ function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
     }
 }
 
+function renderCartOverlay(items){
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
+    var popup = iframe.getElementsByClassName('cart-dialog')[0];
+    var html = '<table class="table table-striped">';
+    popup.style.visibility = 'visible';
+    var title = iframe.getElementsByClassName('title')[1];
+    var actionButtons = iframe.getElementsByClassName('action_buttons')[1];
+    actionButtons.style.visibility =  'visible';
+    // get product info from db
+    popup.style.display = 'block';
+    for(i=0; i<items.length;i++){
+        html += '<tr><td>' + items[i].name + '</td>' + '<td>' + items[i].price + '</td></tr>'
+    }
+    html += '</table>';
+    title.innerHTML = html;
+    console.log(html);
+}
+
 function removeInfoPopup() {
     var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
     var popup = iframe.getElementsByClassName('dialog')[0];
@@ -233,6 +258,17 @@ function addToCart(id) {
     });
 }
 
+function viewCartDetails(){
+    $.ajax({
+        url: "/api/cartitems",
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function (res) {
+            renderCartOverlay(res);
+        }
+    });
+}
+
 function viewProductDetails(productId) {
     $.ajax({
         url: "/api/products/" + productId,
@@ -249,7 +285,11 @@ function onHotspotClick(e) {
     console.log('onHotspotClick', id);
     if (id && id in scenes && id.includes('room')) {
         goToNextRoom(id);
-    } else if (id && id.includes('item') && id.includes('view')) {
+    }
+    else if(id && id === 'openCart'){
+        viewCartDetails();
+    }
+    else if (id && id.includes('item') && id.includes('view')) {
         var productId = id.split('item')[1].split('_view')[0];
         viewProductDetails(productId);
     } else if (id && id.includes('item') && id.includes('cart')) {
