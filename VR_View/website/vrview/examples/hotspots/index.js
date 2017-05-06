@@ -144,16 +144,30 @@ function onVRViewReady(e) {
 function onModeChange(e) {
   console.log('onModeChange', e.mode);
 }
+var timeout;
 
 function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
-    var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
   var popup = iframe.getElementsByClassName('dialog')[0];
+  popup.style.visibility = 'visible';
   var title = iframe.getElementsByClassName('title')[0];
   var price = iframe.getElementsByClassName('message')[0];
   // get product info from db
   popup.style.display = 'block';
   title.textContent = inputTitle;
   price.textContent = showCurrency ? 'Rs.' + inputPrice +'/-' : inputPrice;
+    if(!showCurrency && popup.style.visibility !== 'hidden'){
+     timeout = setTimeout(function() {
+          removeInfoPopup();
+      }, 750);
+  }
+}
+
+function removeInfoPopup(){
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
+    var popup = iframe.getElementsByClassName('dialog')[0];
+    popup.style.visibility = 'hidden';
+    clearTimeout(timeout);
 }
 
 function goToNextRoom(roomId) {
