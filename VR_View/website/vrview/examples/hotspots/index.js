@@ -33,6 +33,13 @@ var scenes = {
                 radius: 0.15,
                 distance: 1,
                 hidden: true
+            },
+            room3: {
+                pitch: -30,
+                yaw: -5,
+                radius: 0.15,
+                distance: 1,
+                hidden: true
             }
         }
     },
@@ -134,6 +141,19 @@ var scenes = {
             maproom: {
                 pitch: 16,
                 yaw: 67,
+                radius: 0.1,
+                distance: 1,
+                hidden: true
+            }
+        }
+    },
+    room3: {
+        image: 'room3.jpg',
+        preview: 'room3.jpg',
+        hotspots: {
+            maproom: {
+                pitch: 10,
+                yaw: 24,
                 radius: 0.1,
                 distance: 1,
                 hidden: true
