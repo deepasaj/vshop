@@ -84,11 +84,11 @@ canvas:active {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
-	align-items: center;
+  align-items: center;
   justify-content: center;
 }
 #play-overlay.visible {
-	display: flex;
+  display: flex;
 }
 #play-overlay img {
   width: 30%;
@@ -97,4 +97,10 @@ canvas:active {
 
 #error .message {
   font-family: monospace;
+}
+
+.close_button, .cart {
+  display: inline-block;
+  float: right;
+  margin: -15px 10px;
 }

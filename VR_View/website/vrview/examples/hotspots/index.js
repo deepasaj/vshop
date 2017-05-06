@@ -16,250 +16,141 @@ var vrView;
 
 // All the scenes for the experience
 var scenes = {
-  dolphins: {
-    image: 'dolphins.jpg',
-    preview: 'dolphins-preview.jpg',
-    hotspots: {
-      whaleRight: {
-        pitch: 0,
-        yaw: 110,
-        radius: 0.05,
-        distance: 1
-      },
-      whaleLeft: {
-        pitch: 0,
-        yaw: 150,
-        radius: 0.05,
-        distance: 1
-      },
-      walrus: {
-        pitch: 0,
-        yaw: 170,
-        radius: 0.05,
-        distance: 1
-      }
+    temp: {
+        image: 'temp.jpg',
+        preview: 'temp.jpg',
+        hotspots: {
+            room1: {
+                pitch: 0,
+                yaw: 38,
+                radius: 0.05,
+                distance: 1
+            },
+            room2: {
+                pitch: 0,
+                yaw: 12,
+                radius: 0.05,
+                distance: 1
+            },
+            room3: {
+                pitch: 0,
+                yaw: -64,
+                radius: 0.05,
+                distance: 1
+            },
+            room4: {
+                pitch: 0,
+                yaw: -90,
+                radius: 0.05,
+                distance: 1
+            },
+            room5: {
+                pitch: 0,
+                yaw: -167,
+                radius: 0.05,
+                distance: 1
+            },
+            room6: {
+                pitch: 0,
+                yaw: -245,
+                radius: 0.05,
+                distance: 1
+            }
+        }
+    },
+    room1: {
+        image: 'room1.jpg',
+        preview: 'room1.jpg',
+        hotspots: {
+            temp: {
+                pitch: 0,
+                yaw: 0,
+                radius: 0.05,
+                distance: 1
+            }
+        }
     }
-  },
-  whaleLeft: {
-    image: 'whale-left.jpg',
-    preview: 'whale-left-preview.jpg',
-    hotspots: {
-      whaleRight: {
-        pitch: 0,
-        yaw: 125,
-        radius: 0.05,
-        distance: 1
-      },
-      dolphins: {
-        pitch: 0,
-        yaw: 110,
-        radius: 0.05,
-        distance: 1
-      },
-      walrus: {
-        pitch: 0,
-        yaw: 30,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  },
-  whaleRight: {
-    image: 'whale-right.jpg',
-    preview: 'whale-right-preview.jpg',
-    hotspots: {
-      dolphins: {
-        pitch: 0,
-        yaw: 305,
-        radius: 0.05,
-        distance: 1
-      },
-      whaleLeft: {
-        pitch: 0,
-        yaw: 180,
-        radius: 0.05,
-        distance: 1
-      },
-      walrus: {
-        pitch: 0,
-        yaw: 210,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  },
-  walrus: {
-    image: 'walrus.jpg',
-    preview: 'walrus-preview.jpg',
-    hotspots: {
-      whaleLeft: {
-        pitch: 0,
-        yaw: 20,
-        radius: 0.05,
-        distance: 1
-      },
-      whaleRight: {
-        pitch: 0,
-        yaw: 340,
-        radius: 0.05,
-        distance: 1
-      },
-      dolphins: {
-        pitch: 0,
-        yaw: 320,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  },
-  temp: {
-    image: 'temp.jpg',
-    preview: 'temp.jpg',
-    hotspots: {
-      room1: {
-        pitch: 0,
-        yaw: 47,
-        radius: 0.05,
-        distance: 1
-      },
-      room2: {
-        pitch: 0,
-        yaw: -90,
-        radius: 0.05,
-        distance: 1
-      },
-      room3: {
-        pitch: 0,
-        yaw: -107,
-        radius: 0.05,
-        distance: 1
-      },
-      balcony: {
-        pitch: 0,
-        yaw: 150,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  },
-  room1: {
-    image: 'room1.jpg',
-    preview: 'room1.jpg',
-    hotspots: {
-      hall: {
-        pitch: 0,
-        yaw: 0,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  },
-  room3: {
-    image: 'room2.jpg',
-    preview: 'room2.jpg',
-    hotspots: {
-      hall: {
-        pitch: 0,
-        yaw: 80,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  },
-  room2: {
-    image: 'room3.jpg',
-    preview: 'room3.jpg',
-    hotspots: {
-      hall: {
-        pitch: 0,
-        yaw: 180,
-        radius: 0.05,
-        distance: 1
-      },
-      balcony: {
-        pitch: 0,
-        yaw: 0,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  },
-  balcony: {
-    image: 'balcony.jpg',
-    preview: 'balcony.jpg',
-    hotspots: {
-      hall: {
-        pitch: 0,
-        yaw: 0,
-        radius: 0.05,
-        distance: 1
-      }
-    }
-  }
-
 };
 
 function onLoad() {
-  vrView = new VRView.Player('#vrview', {
-    image: 'blank.png',
-    preview: 'blank.png',
-    is_stereo: true,
-    is_autopan_off: true
-  });
+    vrView = new VRView.Player('#vrview', {
+        image: 'blank.png',
+        preview: 'blank.png',
+        is_stereo: true,
+        is_autopan_off: true
+    });
 
-  vrView.on('ready', onVRViewReady);
-  vrView.on('modechange', onModeChange);
-  vrView.on('click', onHotspotClick);
-  vrView.on('error', onVRViewError);
+    vrView.on('ready', onVRViewReady);
+    vrView.on('modechange', onModeChange);
+    vrView.on('click', onHotspotClick);
+    vrView.on('error', onVRViewError);
 }
 
 function onVRViewReady(e) {
-  console.log('onVRViewReady');
-  //var name = getParameterByName('name');
-  loadScene("temp");
+    console.log('onVRViewReady');
+    //var name = getParameterByName('name');
+    loadScene("temp");
 }
 
 function onModeChange(e) {
-  console.log('onModeChange', e.mode);
+    console.log('onModeChange', e.mode);
+}
+
+function renderProductInfoPopup(productId) {
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
+    var popup = iframe.getElementsByClassName('dialog')[0];
+    var title = iframe.getElementsByClassName('title')[0];
+    var description = iframe.getElementsByClassName('message')[0];
+    // get product info from db
+    popup.style.display = 'block';
+    title.textContent = 'abdh';
+    description.textContent = 'mhvf';
+}
+
+function goToNextRoom(roomId) {
+    loadScene(roomId);
 }
 
 function onHotspotClick(e) {
-  console.log('onHotspotClick', e.id);
-  if (e.id) {
-    loadScene(e.id);
-  }
+    var id = e.id;
+    console.log('onHotspotClick', id);
+    if (id && id in scenes) {
+        goToNextRoom(id);
+    } else if (id) {
+        renderProductInfoPopup(id);
+    }
 }
 
 
 function loadScene(id) {
-  console.log('loadScene', id);
+    console.log('loadScene', id);
 
-  // Set the image
-  vrView.setContent({
-    image: scenes[id].image,
-    preview: scenes[id].preview,
-    is_stereo: true,
-    is_autopan_off: true
-  });
-
-  // Add all the hotspots for the scene
-  var newScene = scenes[id];
-  var sceneHotspots = Object.keys(newScene.hotspots);
-  for (var i = 0; i < sceneHotspots.length; i++) {
-    var hotspotKey = sceneHotspots[i];
-    var hotspot = newScene.hotspots[hotspotKey];
-
-    vrView.addHotspot(hotspotKey, {
-      pitch: hotspot.pitch,
-      yaw: hotspot.yaw,
-      radius: hotspot.radius,
-      distance: hotspot.distance
+    // Set the image
+    vrView.setContent({
+        image: scenes[id].image,
+        preview: scenes[id].preview,
+        is_stereo: true,
+        is_autopan_off: true
     });
-  }
+
+    // Add all the hotspots for the scene
+    var newScene = scenes[id];
+    var sceneHotspots = Object.keys(newScene.hotspots);
+    for (var i = 0; i < sceneHotspots.length; i++) {
+        var hotspotKey = sceneHotspots[i];
+        var hotspot = newScene.hotspots[hotspotKey];
+
+        vrView.addHotspot(hotspotKey, {
+            pitch: hotspot.pitch,
+            yaw: hotspot.yaw,
+            radius: hotspot.radius,
+            distance: hotspot.distance
+        });
+    }
 }
 
 function onVRViewError(e) {
-  console.log('Error! %s', e.message);
+    console.log('Error! %s', e.message);
 }
 
 function getParameterByName(name) {
