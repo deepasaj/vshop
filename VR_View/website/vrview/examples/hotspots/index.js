@@ -16,6 +16,19 @@ var vrView;
 
 // All the scenes for the experience
 var scenes = {
+  map: {
+    image: 'map.jpg',
+    preview: 'map.jpg',
+    hotspots: {
+      room1: {
+        pitch: 60,
+        yaw: -70,
+        radius: 0.15,
+        distance: 1,
+        hidden: true
+      }
+    }
+  },
   room: {
     image: 'room.jpg',
     preview: 'room.jpg',
@@ -125,7 +138,7 @@ function onLoad() {
 function onVRViewReady(e) {
   console.log('onVRViewReady');
   //var name = getParameterByName('name');
-  loadScene("room");
+  loadScene("map");
 }
 
 function onModeChange(e) {
@@ -202,7 +215,8 @@ function loadScene(id) {
       pitch: hotspot.pitch,
       yaw: hotspot.yaw,
       radius: hotspot.radius,
-      distance: hotspot.distance
+      distance: hotspot.distance,
+      hidden: hotspot.hidden
     });
   }
 }

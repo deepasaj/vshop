@@ -27,7 +27,9 @@ var ACTIVE_DURATION = 100;
 
 // Constants for opacity.
 var MAX_INNER_OPACITY = 0.8;
+var ZERO_MAX_INNER_OPACITY = 0;
 var MAX_OUTER_OPACITY = 0.5;
+var ZERO_MAX_OUTER_OPACITY = 0;
 var FADE_START_ANGLE_DEG = 35;
 var FADE_END_ANGLE_DEG = 60;
 /**
@@ -94,7 +96,7 @@ var HoverReady = false; // initialize to false to avoid automatic first 'focus' 
  * in meters.
  * @param hotspotId {String} The ID of the hotspot.
  */
-HotspotRenderer.prototype.add = function(pitch, yaw, radius, distance, id) {
+HotspotRenderer.prototype.add = function(pitch, yaw, radius, distance, id, hidden) {
   // If a hotspot already exists with this ID, stop.
     clearTimeout(HoverReadyTimer); HoverReady = false;
     HoverReadyTimer = setTimeout(function() { HoverReady = true; }, 500);	// ready for real blur event
@@ -103,7 +105,7 @@ HotspotRenderer.prototype.add = function(pitch, yaw, radius, distance, id) {
     console.error('Attempt to add hotspot with existing id %s.', id);
     return;
   }
-  var hotspot = this.createHotspot_(radius, distance);
+  var hotspot = this.createHotspot_(radius, distance, hidden);
   hotspot.name = id;
 
   // Position the hotspot based on the pitch and yaw specified.
@@ -288,12 +290,18 @@ HotspotRenderer.prototype.getSize_ = function() {
   return this.worldRenderer.renderer.getSize();
 };
 
-HotspotRenderer.prototype.createHotspot_ = function(radius, distance) {
+HotspotRenderer.prototype.createHotspot_ = function(radius, distance, hidden) {
   var innerGeometry = new THREE.CircleGeometry(radius, 32);
+  var outerOpacity=MAX_OUTER_OPACITY, innerOpacity=MAX_INNER_OPACITY;
+
+  if (hidden) {
+    outerOpacity = ZERO_MAX_OUTER_OPACITY;
+    innerOpacity = ZERO_MAX_INNER_OPACITY;
+  }
 
   var innerMaterial = new THREE.MeshBasicMaterial({
     color: 0xffffff, side: THREE.DoubleSide, transparent: true,
-    opacity: MAX_INNER_OPACITY, depthTest: false
+    opacity: innerOpacity, depthTest: false
   });
 
   var inner = new THREE.Mesh(innerGeometry, innerMaterial);
@@ -301,7 +309,7 @@ HotspotRenderer.prototype.createHotspot_ = function(radius, distance) {
 
   var outerMaterial = new THREE.MeshBasicMaterial({
     color: 0xffffff, side: THREE.DoubleSide, transparent: true,
-    opacity: MAX_OUTER_OPACITY, depthTest: false
+    opacity: outerOpacity, depthTest: false
   });
   var outerGeometry = new THREE.RingGeometry(radius * 0.85, radius, 32);
   var outer = new THREE.Mesh(outerGeometry, outerMaterial);
@@ -315,6 +323,7 @@ HotspotRenderer.prototype.createHotspot_ = function(radius, distance) {
   hotspot.add(inner);
   hotspot.add(outer);
 
+  hotspot.hidden = true;
   return hotspot;
 };
 
@@ -348,6 +357,7 @@ HotspotRenderer.prototype.fadeOffCenterHotspots_ = function(camera) {
 
     // Opacity a function of angle. If angle is large, opacity is zero. At some
     // point, ramp opacity down.
+    //debugger;
     this.setOpacity_(id, opacity);
   }
 };
@@ -394,13 +404,20 @@ HotspotRenderer.prototype.up_ = function(id) {
   //    .start();
 };
 
-HotspotRenderer.prototype.setOpacity_ = function(id, opacity) {
+HotspotRenderer.prototype.setOpacity_ = function(id, opacity, hidden) {
   var hotspot = this.hotspots[id];
   var outer = hotspot.getObjectByName('outer');
   var inner = hotspot.getObjectByName('inner');
 
-  outer.material.opacity = opacity * MAX_OUTER_OPACITY;
-  inner.material.opacity = opacity * MAX_INNER_OPACITY;
+  var outerOpacity=MAX_OUTER_OPACITY, innerOpacity=MAX_INNER_OPACITY;
+  if (hidden & this.focussed != id) {
+    outerOpacity = ZERO_MAX_OUTER_OPACITY;
+    innerOpacity = ZERO_MAX_INNER_OPACITY;
+  }
+
+  //debugger;
+  outer.material.opacity = opacity * outerOpacity;
+  inner.material.opacity = opacity * innerOpacity;
 };
 
 module.exports = HotspotRenderer;

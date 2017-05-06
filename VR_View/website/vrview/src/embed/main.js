@@ -133,9 +133,7 @@ function onPauseRequest() {
 }
 
 function onAddHotspot(e) {
-  if (Util.isDebug()) {
     console.log('onAddHotspot', e);
-  }
   // TODO: Implement some validation?
 
   var pitch = parseFloat(e.pitch);
@@ -143,7 +141,8 @@ function onAddHotspot(e) {
   var radius = parseFloat(e.radius);
   var distance = parseFloat(e.distance);
   var id = e.id;
-  worldRenderer.hotspotRenderer.add(pitch, yaw, radius, distance, id);
+  var hidden = e.hidden;
+  worldRenderer.hotspotRenderer.add(pitch, yaw, radius, distance, id, hidden);
 }
 
 function onSetContent(e) {
