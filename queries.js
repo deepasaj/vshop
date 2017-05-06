@@ -6,13 +6,13 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/shop';
+var connectionString = 'postgres://ipkmcurpyfkqgg:cd306b1f346325f858128e17e167d3f9850741d924ebd52550a445b78ce162cd@ec2-23-23-223-2.compute-1.amazonaws.com:5432/ddbeeidvafm7om';
 var db = pgp(connectionString);
 
 // add query functions
 
 function getAllCartitems(req,res,next){
-    db.any('select * from cartitems')
+    db.any('select * from cartitems where user_id=\'U101\'')
         .then(function (data) {
             res.status(200)
                 .json( data);
@@ -36,7 +36,7 @@ function getSingleCartitem(req, res, next) {
 }
 
 function createCartitem(req, res, next) {
-    db.none('insert into cartitems(product_id) values($1)', req.body.productId)
+    db.none('insert into cartitems(user_id,product_id) values($1, $2)', 'U101', req.body.productId)
         .then(function () {
             res.status(200).json();
 

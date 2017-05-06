@@ -1,3 +1,5 @@
+Heroku DB : SHOP_URL='postgres://ipkmcurpyfkqgg:cd306b1f346325f858128e17e167d3f9850741d924ebd52550a445b78ce162cd@ec2-23-23-223-2.compute-1.amazonaws.com:5432/ddbeeidvafm7om'
+
 Getting Started with VR View in HTML Codelab
 ============================================
 
