@@ -466,8 +466,9 @@ function onHotspotClick(e) {
 
 function init() {
     var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
-    var container = iframe.getElementById("namee");
-
+    //var container = iframe.getElementById("namee");
+    var previousCanvas = iframe.getElementsByTagName("canvas")[0];
+    previousCanvas.parentElement.removeChild(previousCanvas);
     // CAMERA
 
     camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
@@ -502,8 +503,8 @@ function init() {
     renderer = new THREE.WebGLRenderer({antialias: true});
     renderer.setClearColor(scene.fog.color);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(400, 170);
-    container.appendChild(renderer.domElement);
+    renderer.setSize(700, 400);
+    iframe.getElementsByTagName("body")[0].appendChild(renderer.domElement);
 }
 
 function loadFont() {
