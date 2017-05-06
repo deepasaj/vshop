@@ -8,6 +8,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function removePopup() {
+            var popup = document.getElementsByClassName('dialog')[0];
+            popup.style.visibility = 'hidden';
+            document.getElementsByClassName('action_buttons')[0].style.visibility = 'hidden';
+        }
+    </script>
 </head>
 
 <body>
@@ -16,8 +23,8 @@
         <h4 class="title">Error</h4>
         <p class="message">An unknown error occurred.</p>
         <div class="action_buttons">
-            <span class="add_to_cart">Add to cart</span>
-            <span class="close_popup">Close</span>
+            <button class="add_to_cart">Add to cart</button>
+            <button class="close_popup" id="removeInfoPopup" onclick="removePopup()">Close</button>
         </div>
     </div>
 </div>

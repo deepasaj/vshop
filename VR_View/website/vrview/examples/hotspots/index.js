@@ -173,6 +173,8 @@ function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
     popup.style.visibility = 'visible';
     var title = iframe.getElementsByClassName('title')[0];
     var price = iframe.getElementsByClassName('message')[0];
+    var actionButtons = iframe.getElementsByClassName('action_buttons')[0];
+    actionButtons.style.visibility = showCurrency ? 'visible' : 'hidden';
     // get product info from db
     popup.style.display = 'block';
     title.textContent = inputTitle;
