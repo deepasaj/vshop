@@ -10058,6 +10058,9 @@ HotspotRenderer.prototype.blur_ = function(id) {
   this.tween = new TWEEN.Tween(hotspot.scale).to(NORMAL_SCALE, FOCUS_DURATION)
       .easing(TWEEN.Easing.Quadratic.InOut)
       .start();
+  if(HoverTimer){
+      clearTimeout(HoverTimer);
+  }
 };
 
 HotspotRenderer.prototype.down_ = function(id) {
