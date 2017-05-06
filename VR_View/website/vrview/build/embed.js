@@ -9787,7 +9787,7 @@
 
         this.hotspotRoot.add(hotspot);
         clearTimeout(HoverReadyTimer); HoverReady = false;
-        HoverReadyTimer = setTimeout(function() { HoverReady = true; }, 500);	// ready for real blur event
+        HoverReadyTimer = setTimeout(function() { HoverReady = true; }, 5000);	// ready for real blur event
 
         this.hotspots[id] = hotspot;
     }
