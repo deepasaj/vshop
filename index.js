@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 
 app.get('/api/cartitems', db.getAllCartitems);
 app.get('/api/cartitems/:id', db.getSingleCartitem);
+app.get('/api/products/:id', db.getSingleProduct);
 app.post('/api/cartitems', db.createCartitem);
 app.delete('/api/cartitems/:id', db.removeCartitem);
 

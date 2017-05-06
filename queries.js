@@ -35,6 +35,19 @@ function getSingleCartitem(req, res, next) {
         });
 }
 
+function getSingleProduct(req,res,next) {
+    var productId = req.params.id;
+    db.one('select * from products where id = $1', productId)
+        .then(function (data) {
+            res.status(200)
+                .json(data);
+        })
+        .catch(function (err) {
+            console.log(err);
+            return next(err);
+        });
+}
+
 function createCartitem(req, res, next) {
     db.none('insert into cartitems(user_id,product_id) values(\'U101\', $1)', 'U101', req.body.productId)
         .then(function () {
@@ -64,5 +77,6 @@ module.exports = {
     getAllCartitems: getAllCartitems,
     getSingleCartitem: getSingleCartitem,
     createCartitem: createCartitem,
-    removeCartitem: removeCartitem
+    removeCartitem: removeCartitem,
+    getSingleProduct: getSingleProduct
 };

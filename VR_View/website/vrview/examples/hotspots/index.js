@@ -132,15 +132,15 @@ function onModeChange(e) {
   console.log('onModeChange', e.mode);
 }
 
-function renderProductInfoPopup(productId) {
+function renderProductInfoPopup(productId, inputTitle, inputPrice) {
   var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
   var popup = iframe.getElementsByClassName('dialog')[0];
   var title = iframe.getElementsByClassName('title')[0];
-  var description = iframe.getElementsByClassName('message')[0];
+  var price = iframe.getElementsByClassName('message')[0];
   // get product info from db
   popup.style.display = 'block';
-  title.textContent = 'abdh';
-  description.textContent = 'mhvf';
+  title.textContent = inputTitle;
+  price.textContent = 'Rs.' + inputPrice +'/-';
 }
 
 function goToNextRoom(roomId) {
@@ -153,7 +153,15 @@ function onHotspotClick(e) {
   if (id && id in scenes && id.includes('room')) {
     goToNextRoom(id);
   } else if (id && id.includes('item') && id.includes('view')) {
-    renderProductInfoPopup(id);
+    var productId = id.split('item')[1].split('_view')[0];
+      $.ajax({
+          url: "/api/products/" + productId,
+          type: 'GET',
+          dataType: 'json', // added data type
+          success: function(res) {
+            renderProductInfoPopup(productId, res.name, res.price);
+          }
+      });
   }
 }
 
