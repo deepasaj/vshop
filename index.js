@@ -30,7 +30,7 @@ fs.readdir(process.cwd(), function (err, files) {
         console.log("%s (%s)", file, path.extname(file));
     });
 });
-app.use(express.static( process.cwd( + '/VR_VIEW'));
+app.use(express.static( process.cwd()+ '/VR_VIEW'));
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
