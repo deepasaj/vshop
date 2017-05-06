@@ -388,10 +388,10 @@ HotspotRenderer.prototype.down_ = function(id) {
 HotspotRenderer.prototype.up_ = function(id) {
   // Become inactive.
   var hotspot = this.hotspots[id];
-  var outer = hotspot.getObjectByName('inner');
+  //var outer = hotspot.getObjectByName('inner');
 
-  this.tween = new TWEEN.Tween(outer.material.color).to(INACTIVE_COLOR, ACTIVE_DURATION)
-      .start();
+  //this.tween = new TWEEN.Tween(outer.material.color).to(INACTIVE_COLOR, ACTIVE_DURATION)
+  //    .start();
 };
 
 HotspotRenderer.prototype.setOpacity_ = function(id, opacity) {

@@ -10036,6 +10036,7 @@ HotspotRenderer.prototype.fadeOffCenterHotspots_ = function(camera) {
   }
 };
 
+  var focussed = "";
 HotspotRenderer.prototype.focus_ = function(id) {
     var hotspot = this.hotspots[id];
 
@@ -10049,7 +10050,16 @@ HotspotRenderer.prototype.focus_ = function(id) {
         .start();
 
 // Virtual Click (todo: real fuse button)
-    if (HoverReady == true) { var that = this; HoverTimer = setTimeout(function() { that.emit('click', id); that.up_(id); }, 2000); }
+    if (HoverReady == true) {
+      var that = this;
+      that.tween = new TWEEN.Tween(inner.material.color).to(new THREE.Color(0.4, 0.6, 0.4), ACTIVE_DURATION)
+          .start();
+      inner.material.opacity = MAX_INNER_OPACITY;
+      that.focussed = id;
+      HoverTimer = setTimeout(function() {
+        that.emit('click', id);
+        //that.up_(id);
+      }, 2000); }
 };
 
 HotspotRenderer.prototype.blur_ = function(id) {
@@ -10061,6 +10071,10 @@ HotspotRenderer.prototype.blur_ = function(id) {
   if(HoverTimer){
       clearTimeout(HoverTimer);
   }
+  var inner = hotspot.getObjectByName('inner');
+  this.tween = new TWEEN.Tween(inner.material.color).to(black_color, ACTIVE_DURATION)
+      .start();
+  this.focussed = "";
 };
 
 HotspotRenderer.prototype.down_ = function(id) {
@@ -10077,8 +10091,8 @@ HotspotRenderer.prototype.up_ = function(id) {
   var hotspot = this.hotspots[id];
   var outer = hotspot.getObjectByName('inner');
 
-  this.tween = new TWEEN.Tween(outer.material.color).to(INACTIVE_COLOR, ACTIVE_DURATION)
-      .start();
+  //this.tween = new TWEEN.Tween(outer.material.color).to(INACTIVE_COLOR, ACTIVE_DURATION)
+  //    .start();
 };
 
 HotspotRenderer.prototype.setOpacity_ = function(id, opacity) {
@@ -10087,7 +10101,7 @@ HotspotRenderer.prototype.setOpacity_ = function(id, opacity) {
   var inner = hotspot.getObjectByName('inner');
 
   var outerOpacity=MAX_OUTER_OPACITY, innerOpacity=MAX_INNER_OPACITY;
-  if (id.includes("item")) {
+  if (id.includes("item") & this.focussed != id) {
     outerOpacity = ITEM_MAX_OUTER_OPACITY;
     innerOpacity = ITEM_MAX_INNER_OPACITY;
   }
