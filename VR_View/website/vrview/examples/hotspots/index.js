@@ -132,15 +132,15 @@ function onModeChange(e) {
   console.log('onModeChange', e.mode);
 }
 
-function renderProductInfoPopup(productId, inputTitle, inputPrice) {
-  var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
+function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
   var popup = iframe.getElementsByClassName('dialog')[0];
   var title = iframe.getElementsByClassName('title')[0];
   var price = iframe.getElementsByClassName('message')[0];
   // get product info from db
   popup.style.display = 'block';
   title.textContent = inputTitle;
-  price.textContent = 'Rs.' + inputPrice +'/-';
+  price.textContent = showCurrency ? 'Rs.' + inputPrice +'/-' : inputPrice;
 }
 
 function goToNextRoom(roomId) {
@@ -159,7 +159,21 @@ function onHotspotClick(e) {
           type: 'GET',
           dataType: 'json', // added data type
           success: function(res) {
-            renderProductInfoPopup(productId, res.name, res.price);
+            renderProductInfoPopup(res.name, res.price, true);
+          }
+      });
+  }  else if (id && id.includes('item') && id.includes('cart')) {
+      var productId = id.split('item')[1].split('_cart')[0];
+      $.ajax({
+          url: "/api/cartitems",
+          async: false,
+          data: { "productId": productId},
+          type: 'POST',
+          dataType: 'json', // added data type
+          success: function () {
+              renderProductInfoPopup('Item added to cart', '', false);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
           }
       });
   }
