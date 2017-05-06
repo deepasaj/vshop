@@ -138,6 +138,90 @@ var scenes = {
                 radius: 0.03,
                 distance: 1,
                 hidden: true
+            },
+            item4_view: {
+                pitch: -104.5,
+                yaw: -242.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item4_cart: {
+                pitch: -112,
+                yaw: -240.0,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item5_view: {
+                pitch: -112,
+                yaw: -217.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item5_cart: {
+                pitch: -120,
+                yaw: -223.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item6_view: {
+                pitch: -81,
+                yaw: -224.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item6_cart: {
+                pitch: -81,
+                yaw: -230.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item7_view: {
+                pitch: -26,
+                yaw: -297.8,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item7_cart: {
+                pitch: -38,
+                yaw: -302.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item8_view: {
+                pitch: -75,
+                yaw: -296.8,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item8_cart: {
+                pitch: -65,
+                yaw: -300.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item9_view: {
+                pitch: -115,
+                yaw: -285.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
+            },
+            item9_cart: {
+                pitch: -105,
+                yaw: -295.5,
+                radius: 0.03,
+                distance: 1,
+                hidden: true
             }
         }
     },
