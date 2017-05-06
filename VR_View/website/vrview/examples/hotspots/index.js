@@ -14,6 +14,27 @@
  */
 var vrView;
 
+THREE.Cache.enabled = false;
+
+var container, hex, color;
+
+var camera, cameraTarget, scene, renderer;
+
+var group, textMesh1, textGeo, materials;
+
+var text = "sajani",
+    height = 20,
+    size = 70,
+    hover = 30,
+    curveSegments = 4,
+    font = undefined,
+    fontName = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
+    fontWeight = "bold"; // normal bold
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+
+var fontIndex = 1;
 // All the scenes for the experience
 var scenes = {
     maproom: {
@@ -319,7 +340,7 @@ function onModeChange(e) {
 var timeout;
 
 function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
-    var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
     var popup = iframe.getElementsByClassName('dialog')[0];
     popup.style.visibility = 'visible';
     var title = iframe.getElementsByClassName('title')[0];
@@ -338,7 +359,7 @@ function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
 }
 
 function renderCartOverlay(items){
-    var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
     var popup = iframe.getElementsByClassName('cart-dialog')[0];
     var html = '<table class="table table-striped">';
     popup.style.visibility = 'visible';
@@ -429,7 +450,8 @@ function onHotspotClick(e) {
         gamificationTimer = setTimeout(function(){loadScene('gamification')}, 10000)
     }
     if (id && id in scenes && (id.includes('room') || id.includes('coupon'))) {
-        goToNextRoom(id);
+        //goToNextRoom(id);
+        test();
     }
     else if(id && id === 'openCart'){
         viewCartDetails();
@@ -442,6 +464,105 @@ function onHotspotClick(e) {
     }
 }
 
+function init() {
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
+    var container = iframe.getElementById("namee");
+
+    // CAMERA
+
+    camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 1500);
+    camera.position.set(0, 400, 700);
+
+    cameraTarget = new THREE.Vector3(0, 150, 0);
+
+    // SCENE
+
+    scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x000000, 250, 1400);
+
+    // LIGHTS
+
+    var pointLight = new THREE.PointLight(0xffffff, 1.5);
+    pointLight.position.set(0, 100, 90);
+    scene.add(pointLight);
+
+    materials = [
+        new THREE.MeshPhongMaterial({color: 0xffffff, shading: THREE.FlatShading}), // front
+        new THREE.MeshPhongMaterial({color: 0xffffff, shading: THREE.SmoothShading}) // side
+    ];
+
+    group = new THREE.Group();
+    group.position.y = 100;
+
+    scene.add(group);
+
+    loadFont();
+    // RENDERER
+
+    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setClearColor(scene.fog.color);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(400, 170);
+    container.appendChild(renderer.domElement);
+}
+
+function loadFont() {
+    var loader = new THREE.FontLoader();
+    loader.load('./' + fontName + '_' + fontWeight + '.typeface.json', function (response) {
+        font = response;
+        refreshText();
+    });
+}
+
+function test() {
+    init();
+    animate();
+}
+
+function createText() {
+
+    textGeo = new THREE.TextBufferGeometry(text, {
+        font: font,
+        size: size,
+        height: height,
+        curveSegments: curveSegments,
+        material: 0,
+        extrudeMaterial: 1
+    });
+
+    textGeo.computeBoundingBox();
+    textGeo.computeVertexNormals();
+
+    var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+
+    textMesh1 = new THREE.Mesh(textGeo, materials);
+
+    textMesh1.position.x = centerOffset;
+    textMesh1.position.y = hover;
+    textMesh1.position.z = 0;
+
+    textMesh1.rotation.x = 0;
+    textMesh1.rotation.y = Math.PI * 2;
+
+    group.add(textMesh1);
+}
+
+function refreshText() {
+    group.remove(textMesh1);
+    if (!text) return;
+    createText();
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    render();
+}
+
+function render() {
+    camera.lookAt(cameraTarget);
+    renderer.clear();
+    renderer.render(scene, camera);
+}
 
 function loadScene(id) {
     console.log('loadScene', id);
