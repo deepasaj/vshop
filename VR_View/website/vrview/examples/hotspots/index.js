@@ -225,6 +225,46 @@ var scenes = {
             }
         }
     },
+    gamification: {
+        image: 'gamification_prompt.jpg',
+        preview: 'gamification_prompt.jpg',
+        hotspots:{
+                room1: {
+                    pitch:-28,
+                    yaw: 0,
+                    radius: 0.05,
+                    distance: 1,
+                    hidden: true
+                },
+                coupon: {
+                    pitch:-20,
+                    yaw: 0,
+                    radius: 0.05,
+                    distance: 1,
+                    hidden: true
+                }
+            }
+    },
+    coupon: {
+        image: 'hidden-coupon.jpg',
+        preview: 'hidden-coupon.jpg',
+        hotspots:{
+            maproom: {
+                pitch: 10,
+                yaw: 24,
+                radius: 0.1,
+                distance: 1,
+                hidden: true
+            },
+            treasure: {
+                pitch: 35,
+                yaw: -266.5,
+                radius: 0.12,
+                distance: 1,
+                hidden: false
+            }
+        }
+    },
     room2: {
         image: 'room2.jpg',
         preview: 'room2.jpg',
@@ -342,6 +382,21 @@ function addToCart(id) {
     });
 }
 
+function addCoupon(id) {
+    $.ajax({
+        url: "/api/cartcoupons",
+        async: false,
+        data: {"couponId": id},
+        type: 'POST',
+        dataType: 'json', // added data type
+        success: function () {
+            renderProductInfoPopup('You won this game and your coupon was added to cart', '', false);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
+
 function viewCartDetails(){
     $.ajax({
         url: "/api/cartitems",
@@ -365,9 +420,15 @@ function viewProductDetails(productId) {
 }
 
 function onHotspotClick(e) {
-    var id = e.id;
+    var id = e.id, gamificationTimer;
     console.log('onHotspotClick', id);
-    if (id && id in scenes && id.includes('room')) {
+    if(id && id === 'treasure'){
+        addCoupon(id);
+    }
+    if(id && id === 'room3'){
+        gamificationTimer = setTimeout(function(){loadScene('gamification')}, 10000)
+    }
+    if (id && id in scenes && (id.includes('room') || id.includes('coupon'))) {
         goToNextRoom(id);
     }
     else if(id && id === 'openCart'){
