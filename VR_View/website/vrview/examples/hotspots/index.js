@@ -16,9 +16,9 @@ var vrView;
 
 // All the scenes for the experience
 var scenes = {
-  map: {
-    image: 'map.jpg',
-    preview: 'map.jpg',
+  maproom: {
+    image: 'maproom.jpg',
+    preview: 'maproom.jpg',
     hotspots: {
       room1: {
         pitch: 60,
@@ -26,44 +26,58 @@ var scenes = {
         radius: 0.15,
         distance: 1,
         hidden: true
+      },
+      room2: {
+        pitch: -18,
+        yaw: 215.5,
+        radius: 0.15,
+        distance: 1,
+        hidden: true
       }
     }
   },
-  room: {
-    image: 'room.jpg',
-    preview: 'room.jpg',
+  room1: {
+    image: 'room1.jpg',
+    preview: 'room1.jpg',
     hotspots: {
-      room1: {
+      maproom: {
+        pitch: 10,
+        yaw: 24,
+        radius: 0.1,
+        distance: 1,
+        hidden: true
+      },
+      room2: {
         pitch: 0,
         yaw: 38,
         radius: 0.05,
         distance: 1
       },
-      room2: {
+      room3: {
         pitch: 0,
         yaw: 12,
         radius: 0.05,
         distance: 1
       },
-      room3: {
+      room4: {
         pitch: 0,
         yaw: -64,
         radius: 0.05,
         distance: 1
       },
-      room4: {
+      room5: {
         pitch: 0,
         yaw: -90,
         radius: 0.05,
         distance: 1
       },
-      room5: {
+      room6: {
         pitch: 0,
         yaw: -167,
         radius: 0.05,
         distance: 1
       },
-      room6: {
+      room7: {
         pitch: 0,
         yaw: -245,
         radius: 0.05,
@@ -73,51 +87,49 @@ var scenes = {
         pitch: 31,
         yaw: -300.5,
         radius: 0.03,
-        distance: 1
+        distance: 1,
+        hidden: true
       },
       item1_cart: {
         pitch: 15,
         yaw: -297.5,
         radius: 0.03,
-        distance: 1
+        distance: 1,
+        hidden: true
       },
       item2_view: {
         pitch: -5,
         yaw: -277.5,
         radius: 0.03,
-        distance: 1
+        distance: 1,
+        hidden: true
       },
       item2_cart: {
         pitch: -5,
         yaw: -282.5,
         radius: 0.03,
-        distance: 1
+        distance: 1,
+        hidden: true
       },
       item3_view: {
         pitch: -65,
         yaw: -252.5,
         radius: 0.03,
-        distance: 1
+        distance: 1,
+        hidden: true
       },
       item3_cart: {
         pitch: -39,
         yaw: -260.5,
         radius: 0.03,
-        distance: 1
+        distance: 1,
+        hidden: true
       }
     }
   },
-  room1: {
-    image: 'room1.jpg',
-    preview: 'room1.jpg',
-    hotspots: {
-      room: {
-        pitch: 0,
-        yaw: 0,
-        radius: 0.05,
-        distance: 1
-      }
-    }
+  room2: {
+    image: 'room2.jpg',
+    preview: 'room2.jpg'
   }
 };
 
@@ -138,7 +150,7 @@ function onLoad() {
 function onVRViewReady(e) {
   console.log('onVRViewReady');
   //var name = getParameterByName('name');
-  loadScene("map");
+  loadScene("maproom");
 }
 
 function onModeChange(e) {
