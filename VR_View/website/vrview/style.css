@@ -17,7 +17,7 @@ html, body {
   -webkit-user-select: none;
 }
 .dialog {
-  display: none;
+  /*display: none;*/
   align-items: center;
   justify-content: center;
   font-family: sans-serif;
@@ -34,7 +34,7 @@ html, body {
   display: flex;
 }
 .dialog .wrap {
-  padding: 30px 60px;
+  padding: 1px 0px 60px 60px;
   margin: 20px auto;
   width: 60%;
   background: rgba(0, 0, 0, 0.8);
@@ -97,10 +97,22 @@ canvas:active {
 
 #error .message {
   font-family: monospace;
+  margin-bottom: 40px;
 }
 
 .close_button, .cart {
   display: inline-block;
   float: right;
   margin: -15px 10px;
+}
+
+.action_buttons {
+  float: right;
+  font-size: 75%;
+}
+
+.action_buttons span {
+  padding: 5px 20px;
+  border: 5px solid grey;
+  margin-right: 15px;
 }
