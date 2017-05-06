@@ -20,6 +20,10 @@ app.get('/api/cartitems/:id', db.getSingleCartitem);
 app.get('/api/products/:id', db.getSingleProduct);
 app.post('/api/cartitems', db.createCartitem);
 app.delete('/api/cartitems/:id', db.removeCartitem);
+app.post('/api/cartcoupons', db.createCartCoupon);
+app.delete('/api/cartcoupons/:id', db.removeCartCoupon);
+app.get('/api/cartcoupons', db.getAllCartCoupons);
+app.get('/api/discounted-cart', db.getCartWithCoupons);
 
 
 app.listen(app.get('port'), function() {
