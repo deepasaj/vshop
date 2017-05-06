@@ -323,7 +323,7 @@ HotspotRenderer.prototype.createHotspot_ = function(radius, distance, hidden) {
   hotspot.add(inner);
   hotspot.add(outer);
 
-  hotspot.hidden = true;
+  hotspot.hidden = hidden;
   return hotspot;
 };
 
@@ -357,7 +357,6 @@ HotspotRenderer.prototype.fadeOffCenterHotspots_ = function(camera) {
 
     // Opacity a function of angle. If angle is large, opacity is zero. At some
     // point, ramp opacity down.
-    //debugger;
     this.setOpacity_(id, opacity);
   }
 };
@@ -415,7 +414,6 @@ HotspotRenderer.prototype.setOpacity_ = function(id, opacity, hidden) {
     innerOpacity = ZERO_MAX_INNER_OPACITY;
   }
 
-  //debugger;
   outer.material.opacity = opacity * outerOpacity;
   inner.material.opacity = opacity * innerOpacity;
 };
