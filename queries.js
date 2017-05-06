@@ -12,7 +12,7 @@ var db = pgp(connectionString);
 // add query functions
 
 function getAllCartitems(req,res,next){
-    db.any('select * from cartitems where user_id=\'U101\'')
+    db.any('select * from cartitems c join products p on cast(c.product_id as integer)=p.id where c.user_id=\'U101\'')
         .then(function (data) {
             res.status(200)
                 .json( data);
