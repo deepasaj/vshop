@@ -129,7 +129,16 @@ var scenes = {
     },
     room2: {
         image: 'room2.jpg',
-        preview: 'room2.jpg'
+        preview: 'room2.jpg',
+        hotspots: {
+            maproom: {
+                pitch: 16,
+                yaw: 67,
+                radius: 0.1,
+                distance: 1,
+                hidden: true
+            }
+        }
     }
 };
 
