@@ -1,11 +1,39 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var fs=require('fs');
 
 app.set('port', (process.env.PORT || 5000));
 process.env.PWD = process.cwd();
 console.log(__dirname);
 console.log(process.cwd());
+fs.readdir(__dirname, function (err, files) {
+    if (err) {
+        throw err;
+    }
+
+    files.map(function (file) {
+        return path.join(p, file);
+    }).filter(function (file) {
+        return fs.statSync(file).isFile();
+    }).forEach(function (file) {
+        console.log("%s (%s)", file, path.extname(file));
+    });
+});
+console.log('*************');
+fs.readdir(process.cwd(), function (err, files) {
+    if (err) {
+        throw err;
+    }
+
+    files.map(function (file) {
+        return path.join(p, file);
+    }).filter(function (file) {
+        return fs.statSync(file).isFile();
+    }).forEach(function (file) {
+        console.log("%s (%s)", file, path.extname(file));
+    });
+});
 app.use(express.static( __dirname + '/VR_VIEW'));
 
 app.listen(app.get('port'), function() {
