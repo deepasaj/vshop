@@ -19,7 +19,7 @@ console.log(process.cwd());
 //     });
 // });
 console.log('*************');
-fs.readdir(process.cwd() + 'VR_VIEW', function (err, files) {
+fs.readdir(process.cwd() + '/VR_VIEW', function (err, files) {
     if (err) {
         throw err;
     }
