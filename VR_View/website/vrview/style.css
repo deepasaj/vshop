@@ -157,13 +157,14 @@ canvas:active {
 }
 .modal .action-buttons button {
   margin : 20px;
-  padding : 5px;
+  padding : 10px;
   width : 35%;
-  background-color: #381871;
+  background-color: #784580;
   color: white;
-  border: 1px inset #fff;
+  border: 1.8px solid #784580;
   border-radius: 10px
 }
+
 .modal .action-buttons button.cancelation {
   background-color: #000;
 }
