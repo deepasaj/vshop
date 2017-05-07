@@ -8,6 +8,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
     <script>
         function removePopup() {
             var popup = document.getElementsByClassName('dialog')[0];
@@ -18,22 +20,30 @@
 </head>
 
 <body>
-<div id="error" class="dialog">
-    <div class="wrap">
-        <h4 class="title">Error</h4>
-        <p class="message">An unknown error occurred.</p>
-        <div class="action_buttons">
-            <button class="add_to_cart">Add to cart</button>
-            <button class="close_popup" id="removeInfoPopup" onclick="removePopup()">Close</button>
-        </div>
+  <div class="info-modal modal" id="error">
+    <div class="title">Some Title</div>
+    <div class="description">
+      <p>Quantity: 100 ml</p>
+      <p class="detailed-description">Description: something</p>
     </div>
-</div>
-<div class="cart-dialog" id="cart-overlay">
+    <div class="price-container">
+      <div class="split-container left"></div>
+      <div class="split-container right">
+        <div class="big-text"><i>₹</i><span class="price message">Sample Price<span></div>
+        <div class="small-text"><i>inclusive of all taxes</i></div>
+      </div>
+    </div>
+    <div class="action-buttons">
+      <button class="positive-action"><i class="ion-android-cart"></i>Add to cart</button>
+      <button class="cancelation" id="closeCart"><i class="ion-flash"></i>Buy Now</button>
+    </div>
+  </div>
+<div class="cart-dialog modal" id="cart-overlay">
     <div class="wrap">
         <div class="title container"></div>
         <p class="message"></p>
-        <div class="action_buttons">
-            <button class="close_popup" id="closeCart">Close</button>
+        <div class="action-buttons action_buttons">
+            <button class="close_popup cancelation" id="closeCart">Close</button>
         </div>
     </div>
 </div>

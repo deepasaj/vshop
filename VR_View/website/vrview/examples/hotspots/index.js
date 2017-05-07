@@ -418,11 +418,11 @@ var scenes = {
                 hidden: true
             },
             treasure: {
-                pitch: 986.1783017141843,
-                yaw: 430.23532284633114,
-                radius: 0.12,
+                pitch: 987.1783017141843,
+                yaw: 432.23532284633114,
+                radius: 0.05,
                 distance: 1,
-                hidden: false
+                hidden: true
             },
             item401_view: {
           		pitch: 605.8734954107325,
@@ -508,14 +508,14 @@ var scenes = {
           		distance: 1,
           		hidden: true
           	},
-          	item407_view: {
+          	item407_cart: {
           		pitch: 317.7555211302324,
           		yaw: 417.57810500216465,
           		radius: 0.05,
           		distance: 1,
           		hidden: true
           	},
-          	item407_cart: {
+          	item407_view: {
           		pitch: 867.8404747954346,
           		yaw: 119.78399872777095,
           		radius: 0.05,
@@ -962,13 +962,37 @@ function onModeChange(e) {
 }
 var timeout;
 
-function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
+function renderProductInfoPopup(inputTitle, inputPrice, showCurrency, description) {
     var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
-    var popup = iframe.getElementsByClassName('dialog')[0];
+    var popup = iframe.getElementsByClassName('info-modal')[0];
     popup.style.visibility = 'visible';
     var title = iframe.getElementsByClassName('title')[0];
     var price = iframe.getElementsByClassName('message')[0];
-    var actionButtons = iframe.getElementsByClassName('action_buttons')[0];
+    //
+    var descText = iframe.getElementsByClassName('detailed-description')[0];
+    if(description) {
+      descText.textContent = description;
+    }
+    var actionButtons = iframe.getElementsByClassName('action-buttons')[0];
+    actionButtons.style.visibility = showCurrency ? 'visible' : 'hidden';
+    // get product info from db
+    popup.style.display = 'block';
+    title.textContent = inputTitle;
+    price.textContent = showCurrency ? inputPrice + '/-' : inputPrice;
+    if (!showCurrency && popup.style.visibility !== 'hidden') {
+        timeout = setTimeout(function () {
+            removeInfoPopup();
+        }, 750);
+    }
+}
+
+function renderProductAddedMessage() {
+    var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
+    var popup = iframe.getElementsByClassName('info-modal')[0];
+    popup.style.visibility = 'visible';
+    var title = iframe.getElementsByClassName('title')[0];
+    var price = iframe.getElementsByClassName('message')[0];
+    var actionButtons = iframe.getElementsByClassName('action-buttons')[0];
     actionButtons.style.visibility = showCurrency ? 'visible' : 'hidden';
     // get product info from db
     popup.style.display = 'block';
@@ -1001,7 +1025,7 @@ function renderCartOverlay(items){
 
 function removeInfoPopup() {
     var iframe = document.getElementsByTagName('iframe')[0].contentDocument;
-    var popup = iframe.getElementsByClassName('dialog')[0];
+    var popup = iframe.getElementsByClassName('info-modal')[0];
     popup.style.visibility = 'hidden';
     clearTimeout(timeout);
 }
