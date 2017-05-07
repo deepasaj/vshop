@@ -617,7 +617,161 @@ var scenes = {
                 radius: 0.1,
                 distance: 1,
                 hidden: true
-            }
+            },
+            item301_view: {
+          		pitch: 67.0966657729104,
+          		yaw: 397.7406315547744,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item301_cart: {
+          		pitch: 421.477195692996,
+          		yaw: 402.59880944521615,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item302_view: {
+          		pitch: 978.9937099258636,
+          		yaw: 120.0092438865779,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item302_cart: {
+          		pitch: 787.4488787041864,
+          		yaw: 55.96424356967009,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item303_view: {
+          		pitch: 998.313437535573,
+          		yaw: 138.24939653647994,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item303_cart: {
+          		pitch: 998.313437535573,
+          		yaw: 130.24939653647994,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item304_view: {
+          		pitch: 752.1585151888726,
+          		yaw: 420.7344428485785,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item304_cart: {
+          		pitch: 556.8688229663608,
+          		yaw: 118.94591897486248,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item305_view: {
+          		pitch: 508.84334688141325,
+          		yaw: 97.3984627478394,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item305_cart: {
+          		pitch: 704.6533107633372,
+          		yaw: 75.97666930793616,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item306_view: {
+          		pitch: 650.1484378755736,
+          		yaw: 106.86932908980441,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item306_cart: {
+          		pitch: 668.1484378755736,
+          		yaw: 100.86932908980441,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item307_view: {
+          		pitch: 508.9138512801892,
+          		yaw: 118.67820371578318,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item307_cart: {
+          		pitch: 320.90799817002153,
+          		yaw: 416.7165152058633,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item308_view: {
+          		pitch: 100.23370513693999,
+          		yaw: 122.11217014403587,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item308_cart: {
+          		pitch: 290.609601105049,
+          		yaw: 56.70378677616918,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item309_view: {
+          		pitch: 66.94390433870878,
+          		yaw: 105.86281961584518,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item309_cart: {
+          		pitch: 72.79548452639561,
+          		yaw: 114.34835897127164,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item310_view: {
+          		pitch: 476.3976600792821,
+          		yaw: 138.7466030708872,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item310_cart: {
+          		pitch: 649.5881146453603,
+          		yaw: 393.1381406558339,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item312_view: {
+          		pitch: 81.97325852146831,
+          		yaw: 134.45630013807977,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	},
+          	item312_cart: {
+          		pitch: 623.68624694759,
+          		yaw: 397.8048188422814,
+          		radius: 0.05,
+          		distance: 1,
+          		hidden: true
+          	}
         }
     }
 };
