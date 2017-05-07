@@ -982,7 +982,7 @@ function renderProductInfoPopup(inputTitle, inputPrice, showCurrency, descriptio
     // get product info from db
     popup.style.display = 'block';
     title.textContent = inputTitle;
-    price.textContent = showCurrency ? inputPrice + '/-' : inputPrice;
+    price.textContent = inputPrice;
     if (!showCurrency && popup.style.visibility !== 'hidden') {
         timeout = setTimeout(function () {
             removeInfoPopup();

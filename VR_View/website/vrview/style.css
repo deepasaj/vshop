@@ -111,6 +111,7 @@ canvas:active {
 #error .message {
   font-family: monospace;
   margin-bottom: 40px;
+  font-family: "Roboto";
 }
 
 .close_button, .cart {
@@ -145,10 +146,14 @@ canvas:active {
   width : 50%;
   margin : 5% 20%;
   color: #fff;
-  padding: 10px 20px;
+  padding: 20px;
 }
 .modal .title {
   color: #fff;
+  font-size: 20px;
+}
+.modal .description {
+  font-size: 11px;
 }
 
 .modal .action-buttons{
@@ -183,8 +188,12 @@ canvas:active {
   float: left;
 }
 .big-text {
-  font-size: 30px;
+  font-size: 25px;
 }
+.small-text {
+  font-size: 10px;
+}
+
 .message-content {
   margin: 0 auto;
 }
