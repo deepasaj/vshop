@@ -16,6 +16,19 @@ var vrView;
 
 // All the scenes for the experience
 var scenes = {
+    coupon_added: {
+        image: 'coupon_added.jpg',
+        preview: 'coupon_added.jpg',
+        hotspots: {
+            room3: {
+                pitch: 90,
+                yaw: 107.5,
+                radius: 0.05,
+                distance: 1,
+                hidden: true
+            }
+        }
+    },
     item1:{
         image: 'item1.jpg',
         preview: 'item1.jpg',
@@ -470,11 +483,11 @@ var scenes = {
                 hidden: true
             },
             treasure: {
-                pitch: 986.1783017141843,
-                yaw: 430.23532284633114,
-                radius: 0.12,
+                pitch: 987.1783017141843,
+                yaw: 432.23532284633114,
+                radius: 0.05,
                 distance: 1,
-                hidden: false
+                hidden: true
             },
             item401_view: {
           		pitch: 605.8734954107325,
@@ -1080,6 +1093,10 @@ function addToCart(id) {
     });
 }
 
+function renderCouponPopup() {
+    loadScene('coupon_added');
+}
+
 function addCoupon(id) {
     $.ajax({
         url: "/api/cartcoupons",
@@ -1088,7 +1105,8 @@ function addCoupon(id) {
         type: 'POST',
         dataType: 'json', // added data type
         success: function () {
-            renderProductInfoPopup('You won this game and your coupon was added to cart', '', false);
+            //renderProductInfoPopup('You won this game and your coupon was added to cart', '', false);
+            renderCouponPopup();
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
@@ -1125,7 +1143,7 @@ function onHotspotClick(e) {
         addCoupon(id);
     }
     if(id && id === 'room3'){
-        gamificationTimer = setTimeout(function(){loadScene('gamification')}, 10000)
+        gamificationTimer = setTimeout(function(){loadScene('gamification')}, 20000)
     }
     if (id && id in scenes && (id.includes('room') || id.includes('coupon'))) {
         goToNextRoom(id);
