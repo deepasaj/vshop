@@ -87,9 +87,9 @@ var scenes = {
         preview: 'cart_confirmation.jpg',
         hotspots: {
         room1: {
-            pitch: 10,
-                yaw: 24,
-                radius: 0.1,
+            pitch: 55,
+                yaw: 45,
+                radius: 0.07,
                 distance: 1,
                 hidden: false
         }
