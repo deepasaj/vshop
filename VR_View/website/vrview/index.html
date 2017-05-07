@@ -21,9 +21,13 @@
             for(var i=0; i<popups.length; i++ ) {
               var popup= popups[i];
               popup.style.visibility = 'hidden';
-              document.getElementsByClassName('action_buttons')[0].style.visibility = 'hidden';
-              var actionButtons = document.getElementsByClassName('action-buttons')[0];
+              popup.getElementsByClassName('action-buttons')[0].style.visibility = 'hidden';
+              var actionButtons = popup.getElementsByClassName('action-buttons')[0];
               actionButtons.style.visibility = 'hidden';
+              var metaInfo = popup.getElementsByClassName('meta-information')[0];
+              if(metaInfo) {
+                metaInfo.style.visibility = 'hidden';
+              }
             }
         }
     </script>
@@ -37,7 +41,7 @@
       <p class="description big-text">Item added to Cart</p></center>
     </div>
     <div class="action-buttons">
-      <button class="positive-action"id="closeCart"><i class="ion-android-cart"></i>Continue Shopping</button>
+      <button class="positive-action"id="closeCart" onclick="removeNewPopup()"><i class="ion-android-cart"></i>Continue Shopping</button>
       <button class="cancelation" ><i class="ion-ios-undo"></i>Undo Adding item</button>
     </div>
     <div class="action-buttons">
@@ -48,7 +52,7 @@
     <div class="title">Some Title</div>
     <div style="float:right"><button onclick="removeNewPopup()">X</button></div>
     <div class="description">
-      <p>Quantity: 100 ml</p>
+      <p class="meta-information">Quantity: 100 ml</p>
       <p class="detailed-description">Description: something</p>
     </div>
     <div class="price-container">
