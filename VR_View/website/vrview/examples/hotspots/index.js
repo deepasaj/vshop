@@ -33,9 +33,16 @@ var scenes = {
         image: 'item1.jpg',
         preview: 'item1.jpg',
         hotspots: {
-            room1: {
+            room3: {
                 pitch: 37,
                 yaw: -18,
+                radius: 0.05,
+                distance: 1,
+                hidden: true
+            },
+            room1: {
+                pitch: -20,
+                yaw: -10,
                 radius: 0.05,
                 distance: 1,
                 hidden: true
@@ -46,9 +53,16 @@ var scenes = {
         image: 'item2.jpg',
         preview: 'item2.jpg',
         hotspots: {
-            room1: {
+            room3: {
                 pitch: 37,
                 yaw: -18,
+                radius: 0.05,
+                distance: 1,
+                hidden: true
+            },
+            room1: {
+                pitch: -20,
+                yaw: -10,
                 radius: 0.05,
                 distance: 1,
                 hidden: true
@@ -59,9 +73,16 @@ var scenes = {
         image: 'item3.jpg',
         preview: 'item3.jpg',
         hotspots: {
-            room1: {
+            room3: {
                 pitch: 37,
                 yaw: -18,
+                radius: 0.05,
+                distance: 1,
+                hidden: true
+            },
+            room1: {
+                pitch: -20,
+                yaw: -10,
                 radius: 0.05,
                 distance: 1,
                 hidden: true
