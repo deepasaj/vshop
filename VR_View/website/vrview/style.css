@@ -131,6 +131,7 @@ canvas:active {
 }
 
 .modal {
+  font-family: "Roboto";
   align-items: center;
   justify-content: center;
   position: absolute;
