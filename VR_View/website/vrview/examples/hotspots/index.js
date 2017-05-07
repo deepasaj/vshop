@@ -43,6 +43,19 @@ var scenes = {
             }
         }
     },
+    confirmation: {
+    image: 'cart_confirmation.jpg',
+        preview: 'cart_confirmation.jpg',
+        hotspots: {
+        room1: {
+            pitch: 10,
+                yaw: 24,
+                radius: 0.1,
+                distance: 1,
+                hidden: false
+        }
+    }
+},
     room1: {
         image: 'room1.jpg',
         preview: 'room1.jpg',
@@ -1019,7 +1032,7 @@ function addToCart(id) {
         type: 'POST',
         dataType: 'json', // added data type
         success: function () {
-            renderProductInfoPopup('Item added to cart', '', false);
+            loadScene('confirmation');
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
