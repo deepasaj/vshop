@@ -16,12 +16,20 @@
             popup.style.visibility = 'hidden';
             document.getElementsByClassName('action_buttons')[0].style.visibility = 'hidden';
         }
+        function removeNewPopup() {
+            var popup = document.getElementsByClassName('info-modal')[0];
+            popup.style.visibility = 'hidden';
+            document.getElementsByClassName('action_buttons')[0].style.visibility = 'hidden';
+            var actionButtons = document.getElementsByClassName('action-buttons')[0];
+            actionButtons.style.visibility = 'hidden';
+        }
     </script>
 </head>
 
 <body>
   <div class="info-modal modal" id="error">
     <div class="title">Some Title</div>
+    <div style="float:right"><button onclick="removeNewPopup()">X</button></div>
     <div class="description">
       <p>Quantity: 100 ml</p>
       <p class="detailed-description">Description: something</p>
