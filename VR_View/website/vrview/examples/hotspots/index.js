@@ -16,6 +16,45 @@ var vrView;
 
 // All the scenes for the experience
 var scenes = {
+    item1:{
+        image: 'item1.jpg',
+        preview: 'item1.jpg',
+        hotspots: {
+            room1: {
+                pitch: 37,
+                yaw: -18,
+                radius: 0.05,
+                distance: 1,
+                hidden: true
+            }
+        }
+    },
+    item2:{
+        image: 'item2.jpg',
+        preview: 'item2.jpg',
+        hotspots: {
+            room1: {
+                pitch: 37,
+                yaw: -18,
+                radius: 0.05,
+                distance: 1,
+                hidden: true
+            }
+        }
+    },
+    item3:{
+        image: 'item3.jpg',
+        preview: 'item3.jpg',
+        hotspots: {
+            room1: {
+                pitch: 37,
+                yaw: -18,
+                radius: 0.05,
+                distance: 1,
+                hidden: true
+            }
+        }
+    },
     maproom: {
         image: 'maproom.jpg',
         preview: 'maproom.jpg',
@@ -976,22 +1015,24 @@ function onModeChange(e) {
 var timeout;
 
 function renderProductInfoPopup(inputTitle, inputPrice, showCurrency) {
-    var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
-    var popup = iframe.getElementsByClassName('dialog')[0];
-    popup.style.visibility = 'visible';
-    var title = iframe.getElementsByClassName('title')[0];
-    var price = iframe.getElementsByClassName('message')[0];
-    var actionButtons = iframe.getElementsByClassName('action_buttons')[0];
-    actionButtons.style.visibility = showCurrency ? 'visible' : 'hidden';
-    // get product info from db
-    popup.style.display = 'block';
-    title.textContent = inputTitle;
-    price.textContent = showCurrency ? 'Rs.' + inputPrice + '/-' : inputPrice;
-    if (!showCurrency && popup.style.visibility !== 'hidden') {
-        timeout = setTimeout(function () {
-            removeInfoPopup();
-        }, 750);
-    }
+    var random = Math.floor(Math.random() * 3) + 1;
+    loadScene("item" + random);
+    //var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
+    //var popup = iframe.getElementsByClassName('dialog')[0];
+    //popup.style.visibility = 'visible';
+    //var title = iframe.getElementsByClassName('title')[0];
+    //var price = iframe.getElementsByClassName('message')[0];
+    //var actionButtons = iframe.getElementsByClassName('action_buttons')[0];
+    //actionButtons.style.visibility = showCurrency ? 'visible' : 'hidden';
+    //// get product info from db
+    //popup.style.display = 'block';
+    //title.textContent = inputTitle;
+    //price.textContent = showCurrency ? 'Rs.' + inputPrice + '/-' : inputPrice;
+    //if (!showCurrency && popup.style.visibility !== 'hidden') {
+    //    timeout = setTimeout(function () {
+    //        removeInfoPopup();
+    //    }, 750);
+    //}
 }
 
 function renderCartOverlay(items){
@@ -1066,14 +1107,15 @@ function viewCartDetails(){
 }
 
 function viewProductDetails(productId) {
-    $.ajax({
-        url: "/api/products/" + productId,
-        type: 'GET',
-        dataType: 'json', // added data type
-        success: function (res) {
-            renderProductInfoPopup(res.name, res.price, true);
-        }
-    });
+    renderProductInfoPopup("res.name", "res.price", true);
+    //$.ajax({
+    //    url: "/api/products/" + productId,
+    //    type: 'GET',
+    //    dataType: 'json', // added data type
+    //    success: function (res) {
+    //        renderProductInfoPopup(res.name, res.price, true);
+    //    }
+    //});
 }
 
 function onHotspotClick(e) {
