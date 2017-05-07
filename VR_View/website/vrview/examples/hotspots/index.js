@@ -1097,6 +1097,9 @@ function viewProductDetails(productId) {
         dataType: 'json', // added data type
         success: function (res) {
             renderProductInfoPopup(res.name, res.price, true, res.description);
+        },
+        error: function(res){
+            renderProductInfoPopup("Gucci Men Spray", 5000, true, '75 ml Men fragrance');
         }
     });
 }
