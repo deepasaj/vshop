@@ -181,10 +181,14 @@ canvas:active {
   float: left;
 }
 .big-text {
-  font-size: 20px;
+  font-size: 30px;
+}
+.message-content {
+  margin: 0 auto;
 }
 
 .image-container {
-  max-height : 100px;
-  max-width : 100px;
+  height : 50px;
+  width : 50px;
+  margin: 0 auto;
 }

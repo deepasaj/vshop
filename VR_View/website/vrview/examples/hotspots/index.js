@@ -966,6 +966,7 @@ function renderProductInfoPopup(inputTitle, inputPrice, showCurrency, descriptio
     var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
     var popup = iframe.getElementsByClassName('info-modal')[0];
     popup.style.visibility = 'visible';
+    popup.style.display = 'block';
     var title = iframe.getElementsByClassName('title')[0];
     var price = iframe.getElementsByClassName('message')[0];
     //
@@ -1003,6 +1004,16 @@ function renderProductAddedMessage() {
             removeInfoPopup();
         }, 750);
     }
+}
+function renderAddedToCart() {
+  // added-cart-modal
+  var iframe = document.getElementsByTagName('iframe')[0].contentDocument, popUpTimeOut;
+  var popup = iframe.getElementsByClassName('added-cart-modal')[0];
+  popup.style.visibility = 'visible';
+  var price = iframe.getElementsByClassName('message')[0];
+  var actionButtons = iframe.getElementsByClassName('action-buttons')[0];
+  actionButtons.style.visibility = 'visible';
+  popup.style.display = 'block';
 }
 
 function renderCartOverlay(items){
@@ -1043,7 +1054,7 @@ function addToCart(id) {
         type: 'POST',
         dataType: 'json', // added data type
         success: function () {
-            renderProductInfoPopup('Item added to cart', '', false);
+            renderAddedToCart();
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
@@ -1082,7 +1093,7 @@ function viewProductDetails(productId) {
         type: 'GET',
         dataType: 'json', // added data type
         success: function (res) {
-            renderProductInfoPopup(res.name, res.price, true);
+            renderProductInfoPopup(res.name, res.price, true, res.description);
         }
     });
 }

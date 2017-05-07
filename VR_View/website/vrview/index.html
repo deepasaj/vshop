@@ -17,16 +17,33 @@
             document.getElementsByClassName('action_buttons')[0].style.visibility = 'hidden';
         }
         function removeNewPopup() {
-            var popup = document.getElementsByClassName('info-modal')[0];
-            popup.style.visibility = 'hidden';
-            document.getElementsByClassName('action_buttons')[0].style.visibility = 'hidden';
-            var actionButtons = document.getElementsByClassName('action-buttons')[0];
-            actionButtons.style.visibility = 'hidden';
+          var popups = document.getElementsByClassName('modal')
+            for(var i=0; i<popups.length; i++ ) {
+              var popup= popups[i];
+              popup.style.visibility = 'hidden';
+              document.getElementsByClassName('action_buttons')[0].style.visibility = 'hidden';
+              var actionButtons = document.getElementsByClassName('action-buttons')[0];
+              actionButtons.style.visibility = 'hidden';
+            }
         }
     </script>
 </head>
 
 <body>
+  <div class="added-cart-modal modal" id="error">
+    <div style="float:right"><button onclick="removeNewPopup()">X</button></div>
+    <div class="message-content">
+      <center><img class="image-container" height="50px" width="50px" src="images/checked.png"></img>
+      <p class="description big-text">Item added to Cart</p></center>
+    </div>
+    <div class="action-buttons">
+      <button class="positive-action"id="closeCart"><i class="ion-android-cart"></i>Continue Shopping</button>
+      <button class="cancelation" ><i class="ion-ios-undo"></i>Undo Adding item</button>
+    </div>
+    <div class="action-buttons">
+      <button class="cancelation"> <i class="ion-flash"></i> Go To Cart </button>
+    </div>
+  </div>
   <div class="info-modal modal" id="error">
     <div class="title">Some Title</div>
     <div style="float:right"><button onclick="removeNewPopup()">X</button></div>
